@@ -3,10 +3,9 @@
 # Each person on the team
 - khalid hamedi
 - Mahmoud hamdan
-Samah Hamed
-ahmad hamzh
-Marwan Al Rawashdeh
-
+- Samah Hamed
+- ahmad hamzh
+- Marwan Al Rawashdeh
 
 
 
