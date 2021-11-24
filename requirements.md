@@ -37,9 +37,30 @@ It can locate the vehicle, and you can provide your feedback about the services 
 The method of car insurance against damage or theft by means of promissory notes or adding a refundable insurance amount in the event that the car is returned free of any defects
 
 
-## story
-- As a client, I want to view all the available cars, so that I can choose a car.
-- As a client, I want to have the ability to rent a car, so that the company can contact me.
-- As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
-- As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
-- As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
+# story
+## As a client, I want to view all the available cars, so that I can choose a car.
+### Feature Tasks:
+- the client can search about any kind of cars 
+### Acceptance Tests:
+- test Ensure that the cars data successfully retrieved from the database
+- Provide an error message and provide a message if there is no car for rent
+
+## As a client, I want to have the ability to rent a car, so that the company can contact me.
+### Feature Tasks:
+- the client can rent a car that he view  
+### Acceptance Tests:
+- Ensure that the statuse car that he chose changed to be not avaliable in the database.
+- ensure that the company was notified when the client rent one of their cars .
+- Provide an error message if the company dosent receive a notification 
+
+## As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
+## As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
+## As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
+## Feature Tasks:
+- company can add a new car for rent
+- company can update their car 
+- Save changes
+## Acceptance Tests
+- Ensure that the company can add delete update their cars not the other companies cars in the database .
+- Provide an error message if thers is error in adding ,updating ,deleting 
+
