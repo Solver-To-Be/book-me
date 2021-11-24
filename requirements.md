@@ -39,6 +39,7 @@ The method of car insurance against damage or theft by means of promissory notes
 
 ## story
 - As a client, I want to view all the available cars, so that I can choose a car.
+- As a client, I want to have the ability to rent a car, so that the company can contact me.
 - As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
 - As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
 - As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
