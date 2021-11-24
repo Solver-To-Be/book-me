@@ -36,6 +36,14 @@ It can locate the vehicle, and you can provide your feedback about the services 
 ## Stretch 
 The method of car insurance against damage or theft by means of promissory notes or adding a refundable insurance amount in the event that the car is returned free of any defects
 
+## Non-Functional Requirements
+
+1.Security: Our website assures that all data inside the DB will be protected against malware attacks or unauthorized access.
+The owners data will be protected from unauthorized access, and thats will be by  define the login flow and different user roles as system behavior or user actions.
+and their passowrd will protect by hashed them before store it in the db so the encrypt will be unreversable 
+
+
+2.Usability: our website has a perfect interface so the users can easily navigate its which makes them to complete the main actions once they see it, and thats Leading to reach their goals quickly 
 
 # story
 ## As a client, I want to view all the available cars, so that I can choose a car.
