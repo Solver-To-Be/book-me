@@ -65,8 +65,13 @@ and their passowrd will protect by hashed them before store it in the db so the 
 - when the client  rent a car the owener company of the car will notify  
 ### Acceptance Tests:
 - ensure that the company was notified when the client rent one of their cars .
-- Provide an error message if the company dosent receive a notification 
+- Provide an error message if the company dosent receive a notification .
 ## As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
+### Feature Tasks:
+- when the client  rent a car the driver will recieve a notification .  
+### Acceptance Tests:
+- ensure that the driver was notified when the client rent one of their cars .
+- Provide an error message if the driver dosent receive a notification .
 ## As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
 ## Feature Tasks:
 - company can add a new car for rent
