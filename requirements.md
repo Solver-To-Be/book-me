@@ -50,10 +50,14 @@ The method of car insurance against damage or theft by means of promissory notes
 - the client can rent a car that he view  
 ### Acceptance Tests:
 - Ensure that the statuse car that he chose changed to be not avaliable in the database.
-- ensure that the company was notified when the client rent one of their cars .
 - Provide an error message if the company dosent receive a notification 
 
 ## As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
+### Feature Tasks:
+- when the client  rent a car the owener company of the car will notify  
+### Acceptance Tests:
+- ensure that the company was notified when the client rent one of their cars .
+- Provide an error message if the company dosent receive a notification 
 ## As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
 ## As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
 ## Feature Tasks:
