@@ -1,3 +1,40 @@
+# story
+## As a client, I want to view all the available cars, so that I can choose a car.
+### Feature Tasks:
+- the client can search about any kind of cars 
+### Acceptance Tests:
+- test Ensure that the cars data successfully retrieved from the database
+- Provide an error message and provide a message if there is no car for rent
+
+## As a client, I want to have the ability to rent a car, so that the company can contact me.
+### Feature Tasks:
+- the client can rent a car that he view  
+### Acceptance Tests:
+- Ensure that the statuse car that he chose changed to be not avaliable in the database.
+- Provide an error message if the company dosent receive a notification 
+
+## As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
+### Feature Tasks:
+- when the client  rent a car the owener company of the car will notify  
+### Acceptance Tests:
+- ensure that the company was notified when the client rent one of their cars .
+- Provide an error message if the company dosent receive a notification .
+## As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
+### Feature Tasks:
+- when the client  rent a car the driver will recieve a notification .  
+### Acceptance Tests:
+- ensure that the driver was notified when the client rent one of their cars .
+- Provide an error message if the driver dosent receive a notification .
+## As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
+## Feature Tasks:
+- company can add a new car for rent
+- company can update their car 
+- Save changes
+## Acceptance Tests
+- Ensure that the company can add delete update their cars not the other companies cars in the database .
+- Provide an error message if thers is error in adding ,updating ,deleting 
+
+
 ## What is the vision of this product?
 - The person who rents a car  will not pay more than the real cost .
 - Car owners will not be afraid for their cars.
@@ -45,39 +82,5 @@ and their passowrd will protect by hashed them before store it in the db so the 
 
 2.Usability: our website has a perfect interface so the users can easily navigate its which makes them to complete the main actions once they see it, and thats Leading to reach their goals quickly 
 
-# story
-## As a client, I want to view all the available cars, so that I can choose a car.
-### Feature Tasks:
-- the client can search about any kind of cars 
-### Acceptance Tests:
-- test Ensure that the cars data successfully retrieved from the database
-- Provide an error message and provide a message if there is no car for rent
 
-## As a client, I want to have the ability to rent a car, so that the company can contact me.
-### Feature Tasks:
-- the client can rent a car that he view  
-### Acceptance Tests:
-- Ensure that the statuse car that he chose changed to be not avaliable in the database.
-- Provide an error message if the company dosent receive a notification 
-
-## As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
-### Feature Tasks:
-- when the client  rent a car the owener company of the car will notify  
-### Acceptance Tests:
-- ensure that the company was notified when the client rent one of their cars .
-- Provide an error message if the company dosent receive a notification .
-## As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
-### Feature Tasks:
-- when the client  rent a car the driver will recieve a notification .  
-### Acceptance Tests:
-- ensure that the driver was notified when the client rent one of their cars .
-- Provide an error message if the driver dosent receive a notification .
-## As a company, I want to have the ability to add or update my cars so that the client can view my deals rental cars. 
-## Feature Tasks:
-- company can add a new car for rent
-- company can update their car 
-- Save changes
-## Acceptance Tests
-- Ensure that the company can add delete update their cars not the other companies cars in the database .
-- Provide an error message if thers is error in adding ,updating ,deleting 
 
