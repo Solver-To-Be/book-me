@@ -35,3 +35,9 @@ It can locate the vehicle, and you can provide your feedback about the services 
 
 ## Stretch 
 The method of car insurance against damage or theft by means of promissory notes or adding a refundable insurance amount in the event that the car is returned free of any defects
+
+
+## story
+- As a client, I want to view all the available cars, so that I can choose a car.
+- As a company, I want the client to notify me if he wants to rent a car so that I can know there is a probable client. 
+- As a driver, I want the company to inform me if there is a delivery mission so that, I can know when I should start my trip 
