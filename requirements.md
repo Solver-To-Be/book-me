@@ -1,3 +1,4 @@
+![wireframe1.PNG](wireframe1.PNG.PNG)
 # story
 ## As a client, I want to view all the available cars, so that I can choose a car.
 ### Feature Tasks:
