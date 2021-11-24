@@ -93,5 +93,8 @@ and their passowrd will protect by hashed them before store it in the db so the 
 
 2.Usability: our website has a perfect interface so the users can easily navigate its which makes them to complete the main actions once they see it, and thats Leading to reach their goals quickly 
 
+# Domain Modeling && Database Schema Diagram
+
+
 ![UnderstandingRelationships](UnderstandingRelationships.jpg)
 
