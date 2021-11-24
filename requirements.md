@@ -1,4 +1,7 @@
 ![wireframe1.PNG](wireframe1.PNG)
+![wireframe2.PNG](wireframe2.PNG)
+![wireframe3.PNG](wireframe3.PNG)
+![wireframe4.PNG](wireframe4.PNG)
 # story
 ## As a client, I want to view all the available cars, so that I can choose a car.
 ### Feature Tasks:
