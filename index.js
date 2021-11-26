@@ -1,5 +1,8 @@
 'use strict'
 
-const {start}=require('./src/server')
+const { db } = require('./src/models/index')
+const { start } = require('./src/server')
 
-start();
+db.sync().then(() => {
+    start();
+})
