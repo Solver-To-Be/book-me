@@ -1,10 +1,10 @@
 'use strict'
 const express = require('express');
 const  {user}  = require('../models/index')
-console.log(user ,'from auth rout =====================================');
+// console.log(user ,'from auth rout =====================================');
 const router = express.Router();
 const bcrypt = require('bcrypt')
-// const basicAuth = require('../auth/middleware/basickauth')
+const basicAuth = require('../auth/middleware/basickauth')
 router.get('/test', (req, res) => {
     res.status(200).send('Done');
 })
@@ -16,13 +16,13 @@ router.post('/signUp', async (req, res) => {
     res.status(201).json(record);
 })
 
-// router.post('/signin', basicAuth, (req, res) => {
-// console.log('from sign in ==============================');
-//     res.status(200).send(req.body);
-// })
+router.post('/signin', basicAuth, (req, res) => {
+console.log(req.headers.authorization, 'from sign in ==============================');
+    res.status(200).send(req.user);
+})
 
 // router.get('/signin', bearerAuth, (req,res)=>{
-//     
+    
 //     res.status(200).send('Done');
 // })
 

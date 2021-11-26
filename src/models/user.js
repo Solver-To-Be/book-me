@@ -10,23 +10,25 @@ const Users = (sequelize, DataTypes) => {
         username: { type: DataTypes.STRING, allowNull: false },
         password: { type: DataTypes.STRING, allowNull: false },
         token: {
-            type: DataTypes.VIRTUAL
+            type: DataTypes.VIRTUAL,
         }
-
     })
-    // userModule.authBasic = async function (username, password) {
-    //     try {
-    //         const user = await user.findOne({ where: { username } })
-    //         console.log(user, '======================================');
+    userModule.authBasic = async function (username, password) {
+        try {
+            const user = await userModule.findOne({ where: { username } })
+            
+            const valid = await bcrypt.compare(password, user.password)
+            console.log(valid, '======================================');
+            if (valid) {
+                user.token =  jwt.sign({username : this.username},process.env.SECRET)
+                console.log(this.token, 'from token======================================');
+                return user
+            }
 
-    //         const valid = await bcrypt.compare(password, user.password)
-    //         console.log(valid, '======================================');
-
-    //     } catch (error) {
-    //         console.error(error.message)
-    //     }
-
-    // }
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
     return userModule
 }
 
