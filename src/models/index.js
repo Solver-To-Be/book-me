@@ -1,5 +1,6 @@
 'use strict'
 const user = require('./user')
+const cars = require('./car')
 // console.log(user,'from index =====================================');
 const { Sequelize, DataTypes } = require('sequelize');
 
@@ -18,5 +19,6 @@ const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions)
 
 module.exports = {
   user : user(sequelize, DataTypes),
+  car : cars(sequelize, DataTypes),
   db : sequelize 
 }
