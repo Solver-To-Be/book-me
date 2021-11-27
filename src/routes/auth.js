@@ -1,32 +1,33 @@
 'use strict'
 const express = require('express');
-const { user } = require('../models/index')
-const { car } = require('../models/index')
-// console.log(user ,'from auth rout =====================================');
+const { user } = require('../models/index');
+const { car } = require('../models/index');
 const router = express.Router();
-const bcrypt = require('bcrypt')
-const basicAuth = require('../auth/middleware/basickauth')
-const barearAuth = require('../auth/middleware/barear')
+const bcrypt = require('bcrypt');
+const basicAuth = require('../auth/middleware/basickauth');
+const barearAuth = require('../auth/middleware/barear');
 const acl = require('../auth/middleware/acl');
 
-
-router.get('/getallcar',barearAuth,acl('read') , async (req, res) => {
+router.get('/getallcar', barearAuth, acl('read'), async (req, res) => {
     try {
-        let recordId = await car.findAll( {where : {status : 'avaliable' }} )
+        let recordId = await car.findAll({ where: { status: 'avaliable' } })
         res.status(200).send(recordId);
-        
     } catch (error) {
-        throw new Error (error.message)
+        throw new Error(error.message)
     }
+})
+
+router.get('/getmycar', barearAuth, acl('read'), async (req, res) => {
+    const id = req.user.id
+    let getRecords = await car.findAll({ where: { ownerId: id } });
+    res.status(201).json(getRecords);
 })
 
 router.post('/signUp', async (req, res) => {
     try {
         req.body.password = await bcrypt.hash(req.body.password, 5)
-        console.log(user , '===============================');
         let record = await user.create(req.body);
         res.status(201).json(record);
-        
     } catch (error) {
         throw new Error(error.message)
     }
@@ -34,12 +35,11 @@ router.post('/signUp', async (req, res) => {
 
 router.post('/addcar', barearAuth, acl('car'), async (req, res) => {
     try {
+        req.body.ownerId = req.user.id
         let record = await car.create(req.body);
         res.status(201).json(record);
-        
     } catch (error) {
         throw new Error(error.message)
-        
     }
 })
 
@@ -63,16 +63,13 @@ router.put('/updatecar/:id', barearAuth, acl('car'), async (req, res) => {
     let updateRecord = await recordId.update(recordObj);
     res.status(201).json(updateRecord);
 })
+
 router.post('/signin', basicAuth, (req, res) => {
-    console.log(req.headers.authorization, 'from sign in ==============================');
     res.status(200).send(req.user);
 })
 
 router.get('/get', barearAuth, (req, res) => {
-    
     res.status(200).send(req.user);
 })
-
-
 
 module.exports = router

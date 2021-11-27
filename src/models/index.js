@@ -1,5 +1,5 @@
 'use strict'
-const user = require('./user')
+const users = require('./user')
 const cars = require('./car')
 // console.log(user,'from index =====================================');
 const { Sequelize, DataTypes } = require('sequelize');
@@ -14,11 +14,18 @@ let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
     }
   }
 } : {};
-
 const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions)
 
+const user = users(sequelize, DataTypes)
+const car = cars(sequelize, DataTypes)
+
+user.hasMany(car, { foreignKey: "ownerId", sourceKey: "id" });
+
+car.belongsTo(user, { foreignKey: "ownerId", targetKey: "id" });
+
+
 module.exports = {
-  user : user(sequelize, DataTypes),
-  car : cars(sequelize, DataTypes),
+  user ,
+  car ,
   db : sequelize 
 }

@@ -1,8 +1,6 @@
 'use strict'
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-
-
 require('dotenv').config()
 
 const Users = (sequelize, DataTypes) => {
@@ -31,16 +29,13 @@ const Users = (sequelize, DataTypes) => {
             }
         }
     })
+
     userModule.authBasic = async function (username, password) {
         try {
             const user = await userModule.findOne({ where: { username } })
-
-            const valid = await bcrypt.compare(password, user.password)
-            // console.log(valid, '======================================');
-            if (valid) {
-                // console.log(user.username,' this.username');
-                user.token = jwt.sign({ username: user.username }, process.env.SECRET)
-                // console.log(user.token, 'from token======================================');
+            const valid = await bcrypt.compare(password, user.password)           
+            if (valid) {                
+                user.token = jwt.sign({ username: user.username }, process.env.SECRET)                
                 return user
             }
 
@@ -52,7 +47,7 @@ const Users = (sequelize, DataTypes) => {
     userModule.authToken = async function (token) {
 
         try {
-            
+
             // console.log(token,'token from barear=============================');
             const paresdToken = jwt.verify(token, process.env.SECRET);
             // console.log(paresdToken,'auth token=============================');

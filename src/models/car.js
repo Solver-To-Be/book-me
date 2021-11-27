@@ -12,12 +12,13 @@ const Cars = (sequelize, DataTypes) => {
         photo: { type: DataTypes.STRING, allowNull: false },
         rentCost: { type: DataTypes.STRING, allowNull: false },
         carStatus: { type: DataTypes.STRING, allowNull: false },
-        status : {type : DataTypes.ENUM('avaliable','taken')},
+        status: { type: DataTypes.ENUM('avaliable', 'taken') },
+        ownerId: { type: DataTypes.INTEGER, allowNull: false },
         token: {
             type: DataTypes.VIRTUAL,
-        },        
+        },
     })
-    
+
     return carModule
 }
 
