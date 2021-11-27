@@ -4,8 +4,10 @@
   "description": "# Each person on the team - khalid hamedi - Mahmoud hamdan - Samah Hamed - ahmad hamzh - Marwan Al Rawashdeh",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "init": "sequelize db:create",
+    "test": "NODE_ENV=test jest",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",
