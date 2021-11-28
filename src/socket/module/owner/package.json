@@ -1,0 +1,24 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "module/pickup.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marwanrawshedh/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marwanrawshedh/caps/issues"
+  },
+  "homepage": "https://github.com/marwanrawshedh/caps#readme",
+  "dependencies": {
+    "socket.io": "^4.3.2",
+    "socket.io-client": "^4.3.2"
+  }
+}
