@@ -1,5 +1,7 @@
 {
   "development": {
+    "adapter": "sequelize",
+    "url": "postgres://localhost/my_addon_database",
     "username": "khalidsy90",
     "password": "root",
     "database": "authapi",
