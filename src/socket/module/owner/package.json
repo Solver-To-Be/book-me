@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/marwanrawshedh/caps#readme",
   "dependencies": {
+    "faker": "^5.5.3",
     "socket.io": "^4.3.2",
     "socket.io-client": "^4.3.2"
   }
