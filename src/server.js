@@ -47,7 +47,6 @@ setInterval(async function () {
 customs.on("connection", (socket) => {
   try {
     console.log("customs connected", socket.id);
-
     socket.on("rental-res", async (payload) => {
       console.log(payload);
       let id = payload.carid;

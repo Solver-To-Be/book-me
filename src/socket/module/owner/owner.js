@@ -29,15 +29,18 @@ ownerConnection.on("rent-req", (payload) => {
 
 if (comName === 'search') {
   console.log('searching ....');
-  let randomLat = faker.address.latitude()
-  let randomLon = faker.address.longitude()
-  let obj = {
-    lat: randomLat,
-    lon: randomLon
+  function location() {
+    let randomLat = faker.address.latitude()
+    let randomLon = faker.address.longitude()
+    let obj = {
+      lat: randomLat,
+      lon: randomLon
+    }
+    return obj
   }
-  ownerConnection.emit('getLocation', obj)
-  setInterval(function () {
-    ownerConnection.emit('getLocation', obj)
+  ownerConnection.emit('getLocation', location())
+  setInterval(function () {    
+    ownerConnection.emit('getLocation', location())
   }, 10000);
 }
 
