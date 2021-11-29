@@ -9,6 +9,16 @@ const Users = (sequelize, DataTypes) => {
         password: { type: DataTypes.STRING, allowNull: false },
         phone: { type: DataTypes.STRING, allowNull: false },
         Adress: { type: DataTypes.STRING, allowNull: false },
+        status: {
+            type: DataTypes.STRING,
+            get() {
+              if (this.role === "driver") {
+                return "avaliable";
+              } else {
+                return null;
+              }
+            },
+          },
         token: {
             type: DataTypes.VIRTUAL,
         },
