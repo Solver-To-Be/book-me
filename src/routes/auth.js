@@ -10,7 +10,9 @@ const acl = require('../auth/middleware/acl');
 
 router.post('/signUp', async (req, res) => {
     try {
+  
         req.body.password = await bcrypt.hash(req.body.password, 5)
+        console.log(req.body.password)
         let record = await user.create(req.body);
         res.status(201).json(record);
     } catch (error) {
