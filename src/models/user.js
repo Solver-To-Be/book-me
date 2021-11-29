@@ -38,7 +38,6 @@ const Users = (sequelize, DataTypes) => {
                 user.token = jwt.sign({ username: user.username }, process.env.SECRET)                
                 return user
             }
-
         } catch (error) {
             console.error(error.message)
         }
@@ -46,11 +45,8 @@ const Users = (sequelize, DataTypes) => {
 
     userModule.authToken = async function (token) {
 
-        try {
-
-            // console.log(token,'token from barear=============================');
-            const paresdToken = jwt.verify(token, process.env.SECRET);
-            // console.log(paresdToken,'auth token=============================');
+        try {            
+            const paresdToken = jwt.verify(token, process.env.SECRET);            
             const user = this.findOne({ where: { username: paresdToken.username } });
             if (user) {
                 return user;
@@ -62,7 +58,5 @@ const Users = (sequelize, DataTypes) => {
     };
     return userModule
 }
-
-
 
 module.exports = Users

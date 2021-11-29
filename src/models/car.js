@@ -18,10 +18,7 @@ const Cars = (sequelize, DataTypes) => {
             type: DataTypes.VIRTUAL,
         },
     })
-
     return carModule
 }
-
-
 
 module.exports = Cars
