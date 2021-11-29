@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 app.get("/", (req, res) => {
-  res.status(200).send("اهلا وسهلا ");
+  res.status(200).send("اهلا وسهلا");
 });
 
 require("dotenv").config();
@@ -128,4 +128,5 @@ function start() {
 
 module.exports = {
   start: start,
+  server:app
 };
