@@ -4,11 +4,13 @@ const io = require("socket.io-client");
 const host = "http://localhost:3000";
 const ownersConnection = io.connect(`${host}/owners`);
 const customConnection = io.connect(`${host}/customs`);
+const driverConnection = io.connect(`${host}/drivers`);
 
 let pickup = {
   carid: `${process.argv[2]}`,
   startDate: `${process.argv[3]}`,
   endDate: `${process.argv[4]}`,
+  driver: `${process.argv[5]}`
 };
 
 if (pickup.carid === "undefined") {
@@ -26,6 +28,13 @@ if (pickup.carid === "undefined") {
     }
     if (pickup.carid === payload.carid && payload.status === "ok") {
       console.log("Your rental request has been accepted");
+      if (pickup.driver === 'yes') {
+        driverConnection.emit('req-driver', payload)
+      }
     }
+    if (payload.empty === 'notFound') {
+      console.log(`there is no car with the id : ${payload.carid}`);
+    }
+
   });
 }
