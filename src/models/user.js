@@ -11,16 +11,10 @@ const Users = (sequelize, DataTypes) => {
         Adress: { type: DataTypes.STRING, allowNull: false },
         status: {
             type: DataTypes.STRING,
-            get() {
-              if (this.role === "driver") {
-                return "avaliable";
-              } else {
-                return null;
-              }
-            },
+            defaultValue: "null"           
           },
         token: {
-            type: DataTypes.VIRTUAL,
+            type: DataTypes.VIRTUAL,            
         },
         role: {
             type: DataTypes.ENUM("owner", "driver", "customer"),
