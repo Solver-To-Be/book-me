@@ -6,17 +6,14 @@ const notFoundError = require("./middleware/404");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3030;
-
 const http = require("http");
 
 app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.status(200).send("اهلا وسهلا ");
 });
 
-require("dotenv").config();
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const caps = new Server(server);
@@ -46,6 +43,7 @@ setInterval(async function () {
 
 customs.on("connection", (socket) => {
   try {
+
     console.log("customs connected", socket.id);
     socket.on("rental-res", async (payload) => {
       console.log(payload);
@@ -63,17 +61,18 @@ customs.on("connection", (socket) => {
       customs.emit("res", payload);
       delete msgQueue.companies[userinfo.username].req[id]
       console.log(msgQueue.companies);
-    });  
+
+    });
 
   } catch (error) {
     throw new Error (error.message)     
   }
+
 });
 
 owners.on("connection", (socket) => {
 
   console.log("owner connected", socket.id);
-
   socket.on("get-all", (payload) => {
     Object.values(msgQueue.companies[payload].req).forEach((id) => {
       owners.emit("all", id);
@@ -110,9 +109,18 @@ owners.on("connection", (socket) => {
 });
 
 drivers.on("connection", (socket) => {
-  socket.on("req-driver", (payload) => {
+
+  socket.on("req-driver",async (payload) => {
+    let driversInfo = await user.findAll({ where: { status: "avaliable" } });
+    payload.driver = driversInfo[0].username
     drivers.emit("trip", payload);
+    let driverUpdate = await user.findOne({ where: { id: driversInfo[0].id } });
+    let recordObj = {
+      ...driverUpdate,status:'unavailable'
+    }
+    await driverUpdate.update(recordObj);
   });
+
 });
 
 app.use(router);
