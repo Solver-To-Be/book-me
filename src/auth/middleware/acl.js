@@ -14,7 +14,5 @@ console.log(req.user.capabilities);
     } catch (e) {
       next('Invalid Login');
     }
-
   }
-
 }

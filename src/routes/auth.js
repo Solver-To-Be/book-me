@@ -8,6 +8,24 @@ const basicAuth = require('../auth/middleware/basickauth');
 const barearAuth = require('../auth/middleware/barear');
 const acl = require('../auth/middleware/acl');
 
+router.post('/signUp', async (req, res) => {
+    try {
+        
+        req.body.password = await bcrypt.hash(req.body.password, 5)
+        if (req.body.role === "driver") {
+           req.body = {...req.body,status : "avaliable"}
+        }
+        let record = await user.create(req.body);
+        res.status(201).json(record);
+    } catch (error) {
+        throw new Error(error.message)
+    }
+})
+
+router.post('/signin', basicAuth, (req, res) => {
+    res.status(200).send(req.user);
+})
+
 router.get('/getallcar', barearAuth, acl('read'), async (req, res) => {
     try {
         let recordId = await car.findAll({ where: { status: 'avaliable' } })
@@ -23,14 +41,13 @@ router.get('/getmycar', barearAuth, acl('read'), async (req, res) => {
     res.status(201).json(getRecords);
 })
 
-router.post('/signUp', async (req, res) => {
-    try {
-        req.body.password = await bcrypt.hash(req.body.password, 5)
-        let record = await user.create(req.body);
-        res.status(201).json(record);
-    } catch (error) {
-        throw new Error(error.message)
-    }
+router.put('/updateuser', barearAuth, acl('update'), async (req, res) => {    
+    let recordObj = req.body
+    const id = req.user.id
+    let recordId = await user.findOne({ where: { id } })
+    console.log(recordId);
+    let updateRecord = await recordId.update(recordObj);
+    res.status(201).json(updateRecord);
 })
 
 router.post('/addcar', barearAuth, acl('car'), async (req, res) => {
@@ -49,7 +66,7 @@ router.delete('/deleteuser', barearAuth, acl('read'), async (req, res) => {
     res.status(201).json(deletedRecord);
 })
 
-router.delete('/dletecar/:id', barearAuth, acl('car'), async (req, res) => {
+router.delete('/deletecar/:id', barearAuth, acl('car'), async (req, res) => {
     let id = parseInt(req.params.id)
     let deletedRecord = await car.destroy({ where: { id } });
     res.status(201).json(deletedRecord);
@@ -64,12 +81,13 @@ router.put('/updatecar/:id', barearAuth, acl('car'), async (req, res) => {
     res.status(201).json(updateRecord);
 })
 
-router.post('/signin', basicAuth, (req, res) => {
-    res.status(200).send(req.user);
-})
-
-router.get('/get', barearAuth, (req, res) => {
-    res.status(200).send(req.user);
+router.get('/getallusers',  async (req, res) => {
+    try {
+        let recordId = await user.findAll({ })
+        res.status(200).send(recordId);
+    } catch (error) {
+        throw new Error(error.message)
+    }
 })
 
 module.exports = router

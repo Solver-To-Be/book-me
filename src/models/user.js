@@ -9,8 +9,12 @@ const Users = (sequelize, DataTypes) => {
         password: { type: DataTypes.STRING, allowNull: false },
         phone: { type: DataTypes.STRING, allowNull: false },
         Adress: { type: DataTypes.STRING, allowNull: false },
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "null"           
+          },
         token: {
-            type: DataTypes.VIRTUAL,
+            type: DataTypes.VIRTUAL,            
         },
         role: {
             type: DataTypes.ENUM("owner", "driver", "customer"),
@@ -38,7 +42,6 @@ const Users = (sequelize, DataTypes) => {
                 user.token = jwt.sign({ username: user.username }, process.env.SECRET)                
                 return user
             }
-
         } catch (error) {
             console.error(error.message)
         }
@@ -46,11 +49,8 @@ const Users = (sequelize, DataTypes) => {
 
     userModule.authToken = async function (token) {
 
-        try {
-
-            // console.log(token,'token from barear=============================');
-            const paresdToken = jwt.verify(token, process.env.SECRET);
-            // console.log(paresdToken,'auth token=============================');
+        try {            
+            const paresdToken = jwt.verify(token, process.env.SECRET);            
             const user = this.findOne({ where: { username: paresdToken.username } });
             if (user) {
                 return user;
@@ -62,7 +62,5 @@ const Users = (sequelize, DataTypes) => {
     };
     return userModule
 }
-
-
 
 module.exports = Users
