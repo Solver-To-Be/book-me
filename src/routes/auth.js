@@ -42,6 +42,7 @@ router.get('/getmycar', barearAuth, acl('read'), async (req, res) => {
 })
 
 router.put('/updateuser', barearAuth, acl('update'), async (req, res) => {    
+    req.body.password=await bcrypt.hash(req.body.password, 5)
     let recordObj = req.body
     const id = req.user.id
     let recordId = await user.findOne({ where: { id } })
