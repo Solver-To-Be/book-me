@@ -1,7 +1,7 @@
 'use strict'
 
 const io = require("socket.io-client");
-const host = "http://localhost:3000";
+const host = "https://book-me-car.herokuapp.com";
 const driverConnection = io.connect(`${host}/drivers`);
 const driverName = `${process.argv[2]}`;
 
