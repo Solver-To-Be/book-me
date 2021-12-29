@@ -1,9 +1,9 @@
 # Wireframes
 
-![wireframe1.PNG](Img/wireframe1.PNG)
-![wireframe2.PNG](Img/wireframe2.PNG)
-![wireframe3.PNG](Img/wireframe3.PNG)
-![wireframe4.PNG](Img/wireframe4.PNG)
+![wireframe1.PNG](Img/wireframe1.PNG.jpg)
+![wireframe2.PNG](Img/wireframe2.PNG.jpg)
+![wireframe3.PNG](Img/wireframe3.PNG.jpg)
+![wireframe4.PNG](Img/wireframe4.PNG.jpg)
 
 # story
 
