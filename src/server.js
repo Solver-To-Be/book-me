@@ -3,13 +3,14 @@ const app = express();
 const router = require("./routes/auth");
 const errorHandler = require("./middleware/500");
 const notFoundError = require("./middleware/404");
+const cors = require("cors");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3030;
 const http = require("http");
 
 app.use(express.json());
-
+app.use(cors());
 app.get("/", (req, res) => {
   res.status(200).send("اهلا وسهلا ");
 });
