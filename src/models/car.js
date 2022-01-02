@@ -14,7 +14,7 @@ const Cars = (sequelize, DataTypes) => {
         carStatus: { type: DataTypes.STRING, allowNull: false },
         status: { type: DataTypes.ENUM('avaliable', 'taken') },
         ownerId: { type: DataTypes.INTEGER, allowNull: false },
-        takenId: { type: DataTypes.INTEGER,defaultValue: "null"  },
+        takenId: { type: DataTypes.STRING,defaultValue: "null"  },
         token: {
             type: DataTypes.VIRTUAL,
         },
