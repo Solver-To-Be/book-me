@@ -6,24 +6,24 @@
 // const customConnection = io.connect(`${host}/customs`);
 // const comName = process.argv[2];
 // const carid = `${process.argv[3]}`;
-// // const faker = require('faker');
+// const faker = require('faker');
 
-// // if (comName !== 'search' && carid === "undefined") {
+// if (comName !== 'search' && carid === "undefined") {
 //   ownerConnection.emit("get-all", comName);
 //   ownerConnection.on("all", (payload) => {
 //     if (payload.ownerName === comName) {
 //       console.log(`there is a customer need a car that has id:${payload.carid} has name : ${payload.carName} from ${payload.startDate} to ${payload.endDate}`);
 //     }
 //   });
-// // }
+// }
 
 // ownerConnection.on("rent-req", (payload) => {
 //   if (payload.ownerName === comName) {
 //     console.log(
 //       `there is a customer need a car that has id:${payload.carid} has name${payload.carName} from ${payload.startDate} to ${payload.endDate} `
 //     );
-//     // ownerConnection.disconnect();
-//     // customConnection.disconnect();
+//     ownerConnection.disconnect();
+//     customConnection.disconnect();
 //   }
 // });
 
