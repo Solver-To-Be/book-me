@@ -40,6 +40,11 @@ router.get('/getmycar', barearAuth, acl('read'), async (req, res) => {
     let getRecords = await car.findAll({ where: { ownerId: id } });
     res.status(201).json(getRecords);
 })
+router.get('/getcustomercar', barearAuth, acl('read'), async (req, res) => {
+    const id = req.user.id
+    let getRecords = await car.findAll({ where: { takenId: id } });
+    res.status(201).json(getRecords);
+})
 
 router.put('/updateuser', barearAuth, acl('update'), async (req, res) => {    
     req.body.password=await bcrypt.hash(req.body.password, 5)
@@ -86,6 +91,16 @@ router.get('/getallusers',  async (req, res) => {
     try {
         let recordId = await user.findAll({ })
         res.status(200).send(recordId);
+    } catch (error) {
+        throw new Error(error.message)
+    }
+})
+router.get('/getuser/:id',  async (req, res) => {
+    let id = req.params.id
+    try {
+        let recordId = await car.findOne({ where: { id } })
+        let ownerdata= await user.findOne({ where: { id: recordId.ownerId } })
+        res.status(200).send(ownerdata);
     } catch (error) {
         throw new Error(error.message)
     }
