@@ -49,14 +49,14 @@ customs.on("connection", (socket) => {
     socket.on("rental-res", async (payload) => {
       console.log(payload);
       let id = payload.carid;
-      // let takenId = payload.takenId;
+      let takenId = payload.takenId;
       let carrecord = await car.findOne({ where: { id } });
       let userinfo = await user.findOne({ where: { id: carrecord.ownerId } });
       payload.userinfo = userinfo
       payload.carrecord = carrecord
       if (payload.status === "ok") {
         let recordObj = {
-          ...carrecord,status:'taken'
+          ...carrecord,status:'taken',takenId
         }
         await carrecord.update(recordObj);
       }
