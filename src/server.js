@@ -55,14 +55,14 @@ customs.on("connection", (socket) => {
     socket.on("rental-res", async (payload) => {
       console.log(payload);
       let id = payload.carid;
-      let takenId = payload.takenId;
+      let takenId = payload.name;
       let carrecord = await car.findOne({ where: { id } });
       let userinfo = await user.findOne({ where: { id: carrecord.ownerId } });
       payload.userinfo = userinfo
       payload.carrecord = carrecord
       if (payload.status === "ok") {
         let recordObj = {
-          ...carrecord,status:'taken',takenId
+          ...carrecord,status:'taken',takenId:takenId
         }
         await carrecord.update(recordObj);
       }
@@ -87,9 +87,7 @@ owners.on("connection", (socket) => {
     });
   });
 
-  socket.on('getLocation', (payload) => {
-    socket.emit('getLocation', payload)
-  })
+ 
 
   socket.on("req-fromCus", async (payload) => {
     try {
