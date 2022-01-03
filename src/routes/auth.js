@@ -35,7 +35,7 @@ router.get('/getallcar', barearAuth, acl('read'), async (req, res) => {
     }
 })
 
-router.get('/getmycar', barearAuth, acl('read'), async (req, res) => {
+router.get('/getmycar', barearAuth, acl('car'), async (req, res) => {
     const id = req.user.id
     let getRecords = await car.findAll({ where: { ownerId: id } });
     res.status(201).json(getRecords);
