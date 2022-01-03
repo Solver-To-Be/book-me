@@ -13,7 +13,7 @@ router.post('/signUp', async (req, res) => {
         
         req.body.password = await bcrypt.hash(req.body.password, 5)
         if (req.body.role === "driver") {
-           req.body = {...req.body,status : "avaliable"}
+           req.body = {...req.body,status : "avaliable",drivercar : "nothing"}
         }
         let record = await user.create(req.body);
         res.status(201).json(record);
@@ -40,12 +40,6 @@ router.get('/getmycar', barearAuth, acl('car'), async (req, res) => {
     let getRecords = await car.findAll({ where: { ownerId: id } });
     res.status(201).json(getRecords);
 })
-// router.get('/cuscar', barearAuth, acl('read'), async (req, res) => {
-//     const id = req.user.id
-//     let recordId = await user.findOne({ where: { id } })
-//     let getRecords = await car.findAll({ where: { ownerId: recordId.name } });
-//     res.status(201).json(getRecords);
-// })
 router.get('/getcustomercar', barearAuth, acl('read'), async (req, res) => {
     const id = req.user.id
     let recordId = await user.findOne({ where: { id } })
