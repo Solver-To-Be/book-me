@@ -40,10 +40,16 @@ router.get('/getmycar', barearAuth, acl('car'), async (req, res) => {
     let getRecords = await car.findAll({ where: { ownerId: id } });
     res.status(201).json(getRecords);
 })
+// router.get('/cuscar', barearAuth, acl('read'), async (req, res) => {
+//     const id = req.user.id
+//     let recordId = await user.findOne({ where: { id } })
+//     let getRecords = await car.findAll({ where: { ownerId: recordId.name } });
+//     res.status(201).json(getRecords);
+// })
 router.get('/getcustomercar', barearAuth, acl('read'), async (req, res) => {
     const id = req.user.id
     let recordId = await user.findOne({ where: { id } })
-    let getRecords = await car.findAll({ where: { takenId: recordId.name } });
+    let getRecords = await car.findAll({ where: { takenId: recordId.username } });
     res.status(201).json(getRecords);
 })
 
