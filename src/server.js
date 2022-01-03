@@ -17,7 +17,13 @@ app.get("/", (req, res) => {
 
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const caps = new Server(server);
+const caps = new Server(server,{
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials:true
+  }
+});
 
 const owners = caps.of("/owners");
 const drivers = caps.of("/drivers");
