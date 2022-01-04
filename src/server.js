@@ -84,10 +84,11 @@ customs.on("connection", (socket) => {
 owners.on("connection", (socket) => {
 
   console.log("owner connected", socket.id);
+  let arr=[]
   socket.on("get-all", (payload) => {
-    Object.values(msgQueue.companies[payload].req).forEach((id) => {
-      owners.emit("all", id);
-    });
+    Object.values(msgQueue.companies[payload].req).forEach((id) => {arr.push(id)})
+    
+    owners.emit("all", arr);
   });
 
  
