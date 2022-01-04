@@ -15,7 +15,7 @@ const Users = (sequelize, DataTypes) => {
           },
           drivercar: {
             type: DataTypes.INTEGER,
-            defaultValue: null           
+            defaultValue: 100000,           
           },
         token: {
             type: DataTypes.VIRTUAL,            
