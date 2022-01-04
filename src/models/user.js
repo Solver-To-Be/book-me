@@ -14,8 +14,8 @@ const Users = (sequelize, DataTypes) => {
             defaultValue: "null"           
           },
           drivercar: {
-            type: DataTypes.STRING,
-            defaultValue: "null"           
+            type: DataTypes.INTEGER,
+            defaultValue: null           
           },
         token: {
             type: DataTypes.VIRTUAL,            

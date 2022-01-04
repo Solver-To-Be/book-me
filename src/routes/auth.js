@@ -99,9 +99,18 @@ router.get('/getallusers',  async (req, res) => {
 router.get('/getuser/:id',  async (req, res) => {
     let id = req.params.id
     try {
-        let recordId = await car.findOne({ where: { id } })
-        let ownerdata= await user.findOne({ where: { id: recordId.ownerId } })
+        let ownerdata= await user.findOne({ where: { id } })
         res.status(200).send(ownerdata);
+    } catch (error) {
+        throw new Error(error.message)
+    }
+})
+router.get('/getdrivercar',barearAuth, acl('read'), async (req, res) => {
+    const id = req.user.id
+    try {
+        let driverdata= await user.findOne({ where: { id } })
+        let cardata= await user.findOne({ where: { id:driverdata.drivercar } })
+        res.status(200).send(cardata);
     } catch (error) {
         throw new Error(error.message)
     }
