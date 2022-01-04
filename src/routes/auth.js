@@ -13,7 +13,7 @@ router.post('/signUp', async (req, res) => {
         
         req.body.password = await bcrypt.hash(req.body.password, 5)
         if (req.body.role === "driver") {
-           req.body = {...req.body,status : "avaliable",drivercar : "nothing"}
+           req.body = {...req.body,status : "avaliable"}
         }
         let record = await user.create(req.body);
         res.status(201).json(record);
