@@ -67,6 +67,9 @@ customs.on("connection", (socket) => {
         await carrecord.update(recordObj);
       }
       customs.emit("res", payload);
+      if (payload.driver === 'yes') {
+        driverConnection.emit('req-driver', payload)
+    }
       delete msgQueue.companies[userinfo.username].req[id]
       console.log(msgQueue.companies);
 
