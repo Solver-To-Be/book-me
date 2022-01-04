@@ -109,7 +109,7 @@ router.get('/getdrivercar',barearAuth, acl('read'), async (req, res) => {
     const id = req.user.id
     try {
         let driverdata= await user.findOne({ where: { id } })
-        let cardata= await user.findOne({ where: { id:driverdata.drivercar } })
+        let cardata= await car.findOne({ where: { id:driverdata.drivercar } })
         res.status(200).send(cardata);
     } catch (error) {
         throw new Error(error.message)

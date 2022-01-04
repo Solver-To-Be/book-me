@@ -121,6 +121,7 @@ drivers.on("connection", (socket) => {
     payload.driver = driversInfo[0].username
     drivers.emit("trip", payload);
     let driverUpdate = await user.findOne({ where: { id: driversInfo[0].id } });
+    console.log(payload);
     let recordObj = {
       ...driverUpdate,status:'unavailable',drivercar:payload.carid
     }
