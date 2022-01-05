@@ -53,7 +53,7 @@ customs.on("connection", (socket) => {
 
     console.log("customs connected", socket.id);
     socket.on("rental-res", async (payload) => {
-      console.log(payload);
+     
       let id = payload.carid;
       let takenId = payload.name;
       let carrecord = await car.findOne({ where: { id } });
@@ -68,10 +68,23 @@ customs.on("connection", (socket) => {
       }
       customs.emit("res", payload);
       if (payload.driver === 'yes') {
-        driverConnection.emit('req-driver', payload)
+        // drivers.emit('req-driver', payload)
+        let driversInfo = await user.findAll({ where: { status: "avaliable" } });
+        if(driversInfo.length>0){
+
+          payload.driver = driversInfo[0].username
+          // drivers.emit("trip", payload);
+          let driverUpdate = await user.findOne({ where: { id: driversInfo[0].id } });
+         
+          let recordObj = {
+            ...driverUpdate,status:'unavailable',drivercar:payload.carid
+          }
+          await driverUpdate.update(recordObj);
+        }
+        // console.log(payload,"if");
     }
       delete msgQueue.companies[userinfo.username].req[id]
-      console.log(msgQueue.companies);
+      
 
     });
 
@@ -95,7 +108,7 @@ owners.on("connection", (socket) => {
 
   socket.on("req-fromCus", async (payload) => {
     try {
-      console.log(msgQueue);
+      
       let id = payload.carid;
       let carrecord = await car.findOne({ where: { id } });
       if (!carrecord) {
@@ -109,7 +122,7 @@ owners.on("connection", (socket) => {
           payload.carid
         ] = payload;
         owners.emit("rent-req", payload);
-        console.log(msgQueue.companies[userinfo.username].req);
+       
       }
     } catch (error) {
      console.log(error.message)
@@ -121,15 +134,15 @@ owners.on("connection", (socket) => {
 drivers.on("connection", (socket) => {
 
   socket.on("req-driver",async (payload) => {
-    let driversInfo = await user.findAll({ where: { status: "avaliable" } });
-    payload.driver = driversInfo[0].username
-    drivers.emit("trip", payload);
-    let driverUpdate = await user.findOne({ where: { id: driversInfo[0].id } });
-    console.log(payload);
-    let recordObj = {
-      ...driverUpdate,status:'unavailable',drivercar:payload.carid
-    }
-    await driverUpdate.update(recordObj);
+    // let driversInfo = await user.findAll({ where: { status: "avaliable" } });
+    // payload.driver = driversInfo[0].username
+    // drivers.emit("trip", payload);
+    // let driverUpdate = await user.findOne({ where: { id: driversInfo[0].id } });
+    // console.log(payload);
+    // let recordObj = {
+    //   ...driverUpdate,status:'unavailable',drivercar:payload.carid
+    // }
+    // await driverUpdate.update(recordObj);
   });
 
 });
