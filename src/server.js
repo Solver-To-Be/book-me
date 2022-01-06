@@ -19,7 +19,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const caps = new Server(server,{
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://book-me-now.netlify.app",
     methods: ["GET", "POST"],
     credentials:true
   }
